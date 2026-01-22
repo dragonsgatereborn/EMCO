@@ -43,7 +43,7 @@ If you want to send lines to the EMCO in code yourself, you can use `demonnic.ch
 * `emco fontSize`
   * set the font size for the consoles
 * `emco tabFontSize`
-  * set the font size for the tabs
+  * set the font size for the tabs (sometimes referred to as addFontSize)
 * `emco gag <pattern>`
   * add a gag pattern
 * `emco gaglist`
@@ -73,6 +73,6 @@ If you want to send lines to the EMCO in code yourself, you can use `demonnic.ch
 * `emco unnotify <tabName>`
   * turn off OS notifications for tabName
 * `emco update`
-  * (re)install the latest version of the package
+  * (re)install the latest version of the package from GitHub
 * `emco version`
   * display the current EMCO version and repository information

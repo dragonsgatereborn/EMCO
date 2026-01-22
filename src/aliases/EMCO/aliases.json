@@ -62,5 +62,9 @@
   {
     "name": "emco unlock",
     "regex": "^emco unlock$"
+  },
+  {
+    "name": "README",
+    "regex": "^__EMCO_README__$"
   }
 ]

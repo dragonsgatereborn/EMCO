@@ -263,7 +263,46 @@ registerNamedEventHandler("demonnicEMCO", "EMCOprebuilt startup", "sysLoadEvent"
         
       </Script>
       
-    </ScriptGroup>
+    <Script isActive="yes" isFolder="no"><name>README</name><script>--[[
+EMCO Chat Package README
+
+Installation
+- lua installPackage("https://github.com/dragonsgatereborn/EMCO/releases/latest/download/EMCOChat.mpackage")
+- emco update (updates from GitHub)
+
+Usage
+- demonnic.chat:append("TabName") to send lines to a tab
+- demonnic.chat:cecho("TabName", "message\n") for custom output
+
+Available aliases
+- emco addtab &lt;tabname&gt;
+- emco blankLine &lt;true|false&gt;
+- emco blink &lt;true|false&gt;
+- emco color &lt;option&gt; &lt;value&gt;
+- emco font &lt;fontname&gt;
+- emco fontSize &lt;size&gt;
+- emco tabFontSize &lt;size&gt; (sometimes referred to as addFontSize)
+- emco gag &lt;pattern&gt;
+- emco gaglist
+- emco hide
+- emco load
+- emco lock
+- emco notify &lt;tabName&gt;
+- emco remtab &lt;tabname&gt;
+- emco save
+- emco show
+- emco timestamp &lt;true|false&gt;
+- emco title &lt;new title&gt;
+- emco unlock
+- emco ungag &lt;pattern&gt;
+- emco unnotify &lt;tabName&gt;
+- emco update
+- emco version
+
+Repository
+- https://github.com/dragonsgatereborn/EMCO
+--]]
+</script></Script></ScriptGroup>
     
   </ScriptPackage>
   <AliasPackage>
@@ -661,7 +700,7 @@ end
       <Alias isActive="yes" isFolder="no">
           
         <name>emco update</name>
-        <script>local currentVersion = "2.15.0"
+        <script>local currentVersion = "2.15.1"
 local repoUrl = "https://github.com/dragonsgatereborn/EMCO"
 local packageUrl = repoUrl .. "/releases/latest/download/EMCOChat.mpackage"
 
@@ -724,7 +763,7 @@ demonnic.container:setTitle(title)</script>
         
       </Alias>
       
-    <Alias isActive="yes" isFolder="no"><name>emco version</name><script>local version = "2.15.0"
+    <Alias isActive="yes" isFolder="no"><name>emco version</name><script>local version = "2.15.1"
 local repo = "https://github.com/dragonsgatereborn/EMCO"
 
 cecho("&lt;green&gt;EMCO Chat Package\n")
@@ -732,13 +771,21 @@ cecho("&lt;green&gt;Version: &lt;yellow&gt;" .. version .. "\n")
 cecho("&lt;green&gt;Repository: &lt;cyan&gt;dragonsgatereborn/EMCO\n")
 cecho("&lt;green&gt;GitHub: &lt;cyan&gt;" .. repo .. "\n")
 cecho("&lt;white&gt;Use &lt;green&gt;emco update&lt;white&gt; to check for updates.\n")
-</script><command /><packageName /><regex>^emco version$</regex></Alias></AliasGroup>
+</script><command /><packageName /><regex>^emco version$</regex></Alias><Alias isActive="yes" isFolder="no"><name>README</name><script>--[[
+EMCO Chat Package README
+
+This file is for in-Mudlet documentation. See Scripts -&gt; EMCO -&gt; README.
+
+Repository
+- https://github.com/dragonsgatereborn/EMCO
+--]]
+</script><command /><packageName /><regex>^__EMCO_README__$</regex></Alias></AliasGroup>
     
   </AliasPackage>
   <TimerPackage>
 </TimerPackage>
   <TriggerPackage>
-</TriggerPackage>
+<TriggerGroup isActive="yes" isFolder="yes"><name>EMCO</name><script /><packageName /></TriggerGroup></TriggerPackage>
   <KeyPackage>
 </KeyPackage>
 </MudletPackage>

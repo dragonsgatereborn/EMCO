@@ -7,6 +7,7 @@ base_dir = Path("/Users/ricwall/Library/CloudStorage/GoogleDrive-dgatewizzydizzy
 xml_path = base_dir / "build_manual" / "EMCOChat.xml"
 src_alias_dir = base_dir / "src" / "aliases" / "EMCO"
 src_script_path = base_dir / "src" / "scripts" / "EMCO" / "Code.lua"
+src_readme_script_path = base_dir / "src" / "scripts" / "EMCO" / "README.lua"
 
 pkg_name = "EMCOChat"
 
@@ -18,22 +19,43 @@ parser = ET.XMLParser()
 tree = ET.parse(xml_path, parser=parser)
 root = tree.getroot()
 
-# Update Code script
-for script_group in root.findall(".//ScriptGroup"):
-    name_elem = script_group.find("name")
+# Update Code/README scripts
+script_group = None
+for group in root.findall(".//ScriptGroup"):
+    name_elem = group.find("name")
     if name_elem is None:
         continue
-    if name_elem.text != "EMCO":
+    if name_elem.text == "EMCO":
+        script_group = group
+        break
+
+if script_group is None:
+    raise SystemExit("Could not find ScriptGroup 'EMCO' in XML")
+
+code_script = None
+readme_script = None
+for script in script_group.findall("Script"):
+    script_name = script.find("name")
+    if script_name is None:
         continue
-    for script in script_group.findall("Script"):
-        script_name = script.find("name")
-        if script_name is not None and script_name.text == "Code":
-            script_elem = script.find("script")
-            if script_elem is None:
-                script_elem = ET.SubElement(script, "script")
-            script_elem.text = src_script_path.read_text(encoding="utf-8")
-            break
-    break
+    if script_name.text == "Code":
+        code_script = script
+    elif script_name.text == "README":
+        readme_script = script
+
+if code_script is None:
+    code_script = ET.SubElement(script_group, "Script", isActive="yes", isFolder="no")
+    ET.SubElement(code_script, "name").text = "Code"
+    ET.SubElement(code_script, "script")
+
+code_script.find("script").text = src_script_path.read_text(encoding="utf-8")
+
+if src_readme_script_path.exists():
+    if readme_script is None:
+        readme_script = ET.SubElement(script_group, "Script", isActive="yes", isFolder="no")
+        ET.SubElement(readme_script, "name").text = "README"
+        ET.SubElement(readme_script, "script")
+    readme_script.find("script").text = src_readme_script_path.read_text(encoding="utf-8")
 
 # Find the EMCO AliasGroup
 alias_group = None
@@ -45,6 +67,24 @@ for group in root.findall(".//AliasGroup"):
 
 if alias_group is None:
     raise SystemExit("Could not find AliasGroup 'EMCO' in XML")
+
+# Ensure TriggerPackage/TriggerGroup exists
+trigger_package = root.find("TriggerPackage")
+if trigger_package is None:
+    trigger_package = ET.SubElement(root, "TriggerPackage")
+
+trigger_group = None
+for group in trigger_package.findall("TriggerGroup"):
+    name_elem = group.find("name")
+    if name_elem is not None and name_elem.text == "EMCO":
+        trigger_group = group
+        break
+
+if trigger_group is None:
+    trigger_group = ET.SubElement(trigger_package, "TriggerGroup", isActive="yes", isFolder="yes")
+    ET.SubElement(trigger_group, "name").text = "EMCO"
+    ET.SubElement(trigger_group, "script")
+    ET.SubElement(trigger_group, "packageName")
 
 # Build mapping of existing aliases by name
 existing = {}
