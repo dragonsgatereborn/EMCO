@@ -13,8 +13,123 @@
       <Script isActive="yes" isFolder="no">
           
         <name>Code</name>
-        <script>local defaultConfig = {activeColor = "black", inactiveColor = "black", activeBorder = "green", activeText = "green", inactiveText = "grey", background = "black", windowBorder = "green", title = "green"}
-local emco = require("EMCOChat.emco")
+        <script>--[[
+========================================================
+ EMCO CHAT WINDOW — AVAILABLE COMMANDS &amp; FEATURES
+========================================================
+This system controls your tabbed chat window (EMCO).
+All commands begin with:  emco
+
+--------------------------------------------------------
+ TAB MANAGEMENT
+--------------------------------------------------------
+emco addtab &lt;tabname&gt;
+  Adds a new tab to the chat window.
+
+emco remtab &lt;tabname&gt;
+  Removes an existing tab.
+
+--------------------------------------------------------
+ DISPLAY &amp; APPEARANCE
+--------------------------------------------------------
+emco show
+  Shows the EMCO chat window.
+
+emco hide
+  Hides the EMCO chat window.
+
+emco lock
+  Locks the window so it cannot be moved or resized.
+
+emco unlock
+  Unlocks the window so it can be moved/resized again.
+
+emco font &lt;fontname&gt;
+  Sets the font used by the chat consoles.
+
+emco fontSize &lt;size&gt;
+  Sets the font size for the chat consoles.
+
+emco tabFontSize &lt;size&gt;
+  Sets the font size for the tabs (independent of console).
+
+emco color &lt;option&gt; &lt;value&gt;
+  Changes colors for tabs and backgrounds.
+  Use 'emco color' by itself to see available options.
+
+emco title &lt;new title&gt;
+  Sets the title displayed at the top of the chat window.
+  Default title: "Tabbed Chat"
+
+--------------------------------------------------------
+ MESSAGE DISPLAY OPTIONS
+--------------------------------------------------------
+emco timestamp &lt;true|false&gt;
+  Turns timestamps on or off for messages.
+
+emco blankLine &lt;true|false&gt;
+  Inserts (or removes) a blank line between messages.
+
+emco blink &lt;true|false&gt;
+  Turns tab blinking on or off for new activity.
+
+--------------------------------------------------------
+ NOTIFICATIONS
+--------------------------------------------------------
+emco notify &lt;tabname&gt;
+  Enables OS-level notifications for that tab.
+
+emco unnotify &lt;tabname&gt;
+  Disables OS-level notifications for that tab.
+
+--------------------------------------------------------
+ GAGGING / FILTERING
+--------------------------------------------------------
+emco gag &lt;pattern&gt;
+  Adds a gag filter (hides matching text).
+
+emco ungag &lt;pattern&gt;
+  Removes a gag filter.
+
+emco gaglist
+  Shows all currently active gag patterns.
+
+--------------------------------------------------------
+ CONFIGURATION
+--------------------------------------------------------
+emco save
+  Saves your current EMCO configuration to disk.
+
+emco load
+  Loads your saved EMCO configuration.
+
+emco version
+  Displays the current EMCO version and repository information.
+
+emco update
+  (Re)installs or updates to the latest EMCO package version.
+
+--------------------------------------------------------
+ USAGE IN CODE
+--------------------------------------------------------
+To copy lines from triggers to a tab:
+  demonnic.chat:append("TabName")
+
+To send custom messages:
+  demonnic.chat:cecho("TabName", "Your message here\n")
+  demonnic.chat:decho("TabName", "Your message here\n")
+  demonnic.chat:hecho("TabName", "Your message here\n")
+
+Full API documentation:
+  https://demonnic.github.io/mdk/current/classes/EMCO.html
+
+========================================================
+ End of EMCO Help
+========================================================
+]]--
+
+local defaultConfig = {activeColor = "black", inactiveColor = "black", activeBorder = "green", activeText = "green", inactiveText = "grey", background = "black", windowBorder = "green", title = "green"}
+local emco = require("@PKGNAME@.emco")
 emco.cmdLineStyleSheet = nil
 demonnic = demonnic or {}
 demonnic.helpers = demonnic.helpers or {}
@@ -230,7 +345,7 @@ end
       <Alias isActive="yes" isFolder="no">
           
         <name>emco</name>
-        <script>local valid_options = {"font", "fontSize", "blink", "blankLine", "timestamp", "save", "load", "show", "hide"}
+        <script>local valid_options = {"font", "fontSize", "tabFontSize", "blink", "blankLine", "timestamp", "save", "load", "show", "hide"}
 local valid_options_string = table.concat(valid_options, ", ")
 local option = matches[2]
 local value = matches[3]
@@ -286,6 +401,14 @@ else
         chatEMCO:disableCommandLine()
       end
     end
+  elseif option == "tabFontSize" then
+    value = tonumber(value)
+    if value then
+      chatEMCO:setTabFontSize(value)
+      lecho("Tab font size set to " .. value)
+    else
+      lecho("You tried to set the tabFontSize to a nonnumber. Attempted: " .. matches[3])
+    end
   else
     value = tonumber(value)
     if value then
@@ -301,7 +424,7 @@ end
           
         <packageName />
           
-        <regex>^emco (save|load|font|fontSize|blink|blankLine|timestamp|show|hide)(?: (.+))?$</regex>
+        <regex>^emco (save|load|font|fontSize|tabFontSize|blink|blankLine|timestamp|show|hide)(?: (.+))?$</regex>
         
       </Alias>
       <Alias isActive="yes" isFolder="no">
@@ -503,6 +626,7 @@ local aliases = {
   ["emco addtab &lt;tabname&gt;"] = "adds a tab to your EMCO",
   ["emco remtab &lt;tabname&gt;"] = "removes a tab from your EMCO",
   ["emco fontSize"] = "set the font size for the consoles",
+  ["emco tabFontSize"] = "set the font size for the tabs",
   ["emco font"] = "set the font to use for the consoles",
   ["emco blink &lt;true|false&gt;"] = "turn blinking on/off",
   ["emco blankLine &lt;true|false&gt;"] = "turn inserting a blank line between messages on/off",
@@ -515,6 +639,8 @@ local aliases = {
   ["emco notify &lt;tabName&gt;"] = "turn on OS notifications for tabName",
   ["emco unnotify &lt;tabName&gt;"] = "turn off OS notifications for tabName",
   ["emco color &lt;option&gt; &lt;value&gt;"] = "used to change the colors for the active/inactive tab, and the background color for the consoles. 'emco color' with no options will print out available options",
+  ["emco version"] = "display the current EMCO version and repository information",
+  ["emco update"] = "(re)install the latest version of the package",
 }
 
 echo("\nAvailable aliases for the prebuilt EMCO package")
@@ -535,36 +661,26 @@ end
       <Alias isActive="yes" isFolder="no">
           
         <name>emco update</name>
-        <script>uninstallPackage("EMCOChat")
-installPackage("https://github.com/demonnic/EMCO/releases/latest/download/EMCOChat.mpackage")</script>
+        <script>local currentVersion = "2.15.0"
+local repoUrl = "https://github.com/dragonsgatereborn/EMCO"
+local packageUrl = repoUrl .. "/releases/latest/download/EMCOChat.mpackage"
+
+cecho("&lt;green&gt;EMCO Chat: &lt;reset&gt;Current version: " .. currentVersion .. "\n")
+cecho("&lt;green&gt;EMCO Chat: &lt;reset&gt;Updating from " .. repoUrl .. "\n")
+cecho("&lt;green&gt;EMCO Chat: &lt;reset&gt;Fetching latest version...\n")
+
+uninstallPackage("EMCOChat")
+installPackage(packageUrl)
+
+cecho("&lt;green&gt;EMCO Chat: &lt;reset&gt;Update complete! Package installed from:\n")
+cecho("&lt;green&gt;EMCO Chat: &lt;reset&gt;" .. packageUrl .. "\n")
+</script>
           
         <command />
           
         <packageName />
           
         <regex>^emco update$</regex>
-        
-      </Alias>
-      <Alias isActive="yes" isFolder="no">
-          
-        <name>emco version</name>
-        <script>local version = "2.12.0"
-local repo = "https://github.com/dragonsgatereborn/EMCO"
-
-cecho("<green>╔════════════════════════════════════════════╗\n")
-cecho("<green>║ <white>EMCO Chat Package<green>                       ║\n")
-cecho("<green>╠════════════════════════════════════════════╣\n")
-cecho("<green>║ <white>Version:     <yellow>" .. version .. string.rep(" ", 29 - #version) .. "<green>║\n")
-cecho("<green>║ <white>Repository:  <cyan>dragonsgatereborn/EMCO<green>     ║\n")
-cecho("<green>╚════════════════════════════════════════════╝\n")
-cecho("\n<white>GitHub: <cyan>" .. repo .. "\n")
-cecho("<white>Use '<green>emco update<white>' to check for updates.\n")</script>
-          
-        <command />
-          
-        <packageName />
-          
-        <regex>^emco version$</regex>
         
       </Alias>
       <Alias isActive="yes" isFolder="no">
@@ -608,7 +724,15 @@ demonnic.container:setTitle(title)</script>
         
       </Alias>
       
-    </AliasGroup>
+    <Alias isActive="yes" isFolder="no"><name>emco version</name><script>local version = "2.15.0"
+local repo = "https://github.com/dragonsgatereborn/EMCO"
+
+cecho("&lt;green&gt;EMCO Chat Package\n")
+cecho("&lt;green&gt;Version: &lt;yellow&gt;" .. version .. "\n")
+cecho("&lt;green&gt;Repository: &lt;cyan&gt;dragonsgatereborn/EMCO\n")
+cecho("&lt;green&gt;GitHub: &lt;cyan&gt;" .. repo .. "\n")
+cecho("&lt;white&gt;Use &lt;green&gt;emco update&lt;white&gt; to check for updates.\n")
+</script><command /><packageName /><regex>^emco version$</regex></Alias></AliasGroup>
     
   </AliasPackage>
   <TimerPackage>
