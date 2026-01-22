@@ -8,6 +8,7 @@ xml_path = base_dir / "build_manual" / "EMCOChat.xml"
 src_alias_dir = base_dir / "src" / "aliases" / "EMCO"
 src_script_path = base_dir / "src" / "scripts" / "EMCO" / "Code.lua"
 src_readme_script_path = base_dir / "src" / "scripts" / "EMCO" / "README.lua"
+src_trigger_readme_path = base_dir / "src" / "triggers" / "EMCO" / "README.lua"
 
 pkg_name = "EMCOChat"
 
@@ -86,6 +87,23 @@ if trigger_group is None:
     ET.SubElement(trigger_group, "name").text = "EMCO"
     ET.SubElement(trigger_group, "script")
     ET.SubElement(trigger_group, "packageName")
+
+if src_trigger_readme_path.exists():
+    trigger_readme = None
+    for trig in trigger_group.findall("Trigger"):
+        name_elem = trig.find("name")
+        if name_elem is not None and name_elem.text == "README":
+            trigger_readme = trig
+            break
+    if trigger_readme is None:
+        trigger_readme = ET.SubElement(trigger_group, "Trigger", isActive="yes", isFolder="no")
+        ET.SubElement(trigger_readme, "name").text = "README"
+        ET.SubElement(trigger_readme, "script")
+        ET.SubElement(trigger_readme, "command")
+        ET.SubElement(trigger_readme, "packageName")
+        ET.SubElement(trigger_readme, "regexCodeList")
+        ET.SubElement(trigger_readme, "regexCodePropertyList")
+    trigger_readme.find("script").text = src_trigger_readme_path.read_text(encoding="utf-8")
 
 # Build mapping of existing aliases by name
 existing = {}

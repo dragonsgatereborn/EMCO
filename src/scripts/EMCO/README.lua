@@ -1,6 +1,11 @@
 --[[
 EMCO Chat Package README
 
+Important
+- Do not add or change anything inside the EMCOChat package folders.
+- EMCO updates overwrite package contents and will delete custom changes.
+- Put your custom triggers/aliases/scripts outside EMCOChat, or in a separate custom package.
+
 Installation
 - lua installPackage("https://github.com/dragonsgatereborn/EMCO/releases/latest/download/EMCOChat.mpackage")
 - emco update (updates from GitHub)
@@ -17,7 +22,7 @@ Available aliases
 - emco font <fontname>
 - emco fontSize <size>
 - emco tabFontSize <size>
-- emco addFontSize <size> (alias for tabFontSize)
+- emco addFontSize <size>
 - emco gag <pattern>
 - emco gaglist
 - emco hide

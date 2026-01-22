@@ -269,6 +269,11 @@ registerNamedEventHandler("demonnicEMCO", "EMCOprebuilt startup", "sysLoadEvent"
     <Script isActive="yes" isFolder="no"><name>README</name><script>--[[
 EMCO Chat Package README
 
+Important
+- Do not add or change anything inside the EMCOChat package folders.
+- EMCO updates overwrite package contents and will delete custom changes.
+- Put your custom triggers/aliases/scripts outside EMCOChat, or in a separate custom package.
+
 Installation
 - lua installPackage("https://github.com/dragonsgatereborn/EMCO/releases/latest/download/EMCOChat.mpackage")
 - emco update (updates from GitHub)
@@ -285,7 +290,7 @@ Available aliases
 - emco font &lt;fontname&gt;
 - emco fontSize &lt;size&gt;
 - emco tabFontSize &lt;size&gt;
-- emco addFontSize &lt;size&gt; (alias for tabFontSize)
+- emco addFontSize &lt;size&gt;
 - emco gag &lt;pattern&gt;
 - emco gaglist
 - emco hide
@@ -705,7 +710,7 @@ end
       <Alias isActive="yes" isFolder="no">
           
         <name>emco update</name>
-        <script>local currentVersion = "2.15.3"
+        <script>local currentVersion = "2.15.4"
 local repoUrl = "https://github.com/dragonsgatereborn/EMCO"
 local packageUrl = repoUrl .. "/releases/latest/download/EMCOChat.mpackage"
 
@@ -768,7 +773,7 @@ demonnic.container:setTitle(title)</script>
         
       </Alias>
       
-    <Alias isActive="yes" isFolder="no"><name>emco version</name><script>local version = "2.15.3"
+    <Alias isActive="yes" isFolder="no"><name>emco version</name><script>local version = "2.15.4"
 local repo = "https://github.com/dragonsgatereborn/EMCO"
 
 cecho("&lt;green&gt;EMCO Chat Package\n")
@@ -779,7 +784,40 @@ cecho("&lt;white&gt;Use &lt;green&gt;emco update&lt;white&gt; to check for updat
 </script><command /><packageName /><regex>^emco version$</regex></Alias><Alias isActive="yes" isFolder="no"><name>README</name><script>--[[
 EMCO Chat Package README
 
-This file is for in-Mudlet documentation. See Scripts -&gt; EMCO -&gt; README.
+Important
+- Do not add or change anything inside the EMCOChat package folders.
+- EMCO updates overwrite package contents and will delete custom changes.
+- Put your custom triggers/aliases/scripts outside EMCOChat, or in a separate custom package.
+
+Install
+- lua installPackage("https://github.com/dragonsgatereborn/EMCO/releases/latest/download/EMCOChat.mpackage")
+- emco update (updates from GitHub)
+
+Aliases
+- emco addtab &lt;tabname&gt;
+- emco blankLine &lt;true|false&gt;
+- emco blink &lt;true|false&gt;
+- emco color &lt;option&gt; &lt;value&gt;
+- emco font &lt;fontname&gt;
+- emco fontSize &lt;size&gt;
+- emco tabFontSize &lt;size&gt;
+- emco addFontSize &lt;size&gt;
+- emco gag &lt;pattern&gt;
+- emco gaglist
+- emco hide
+- emco load
+- emco lock
+- emco notify &lt;tabName&gt;
+- emco remtab &lt;tabname&gt;
+- emco save
+- emco show
+- emco timestamp &lt;true|false&gt;
+- emco title &lt;new title&gt;
+- emco unlock
+- emco ungag &lt;pattern&gt;
+- emco unnotify &lt;tabName&gt;
+- emco update
+- emco version
 
 Repository
 - https://github.com/dragonsgatereborn/EMCO
@@ -790,7 +828,18 @@ Repository
   <TimerPackage>
 </TimerPackage>
   <TriggerPackage>
-<TriggerGroup isActive="yes" isFolder="yes"><name>EMCO</name><script /><packageName /></TriggerGroup></TriggerPackage>
+<TriggerGroup isActive="yes" isFolder="yes"><name>EMCO</name><script /><packageName /><Trigger isActive="yes" isFolder="no"><name>README</name><script>--[[
+EMCO Chat Package README (Triggers)
+
+Important
+- Do not add or change anything inside the EMCOChat package folders.
+- EMCO updates overwrite package contents and will delete custom changes.
+- Put your custom triggers outside EMCOChat, or in a separate custom package.
+
+Repository
+- https://github.com/dragonsgatereborn/EMCO
+--]]
+</script><command /><packageName /><regexCodeList /><regexCodePropertyList /></Trigger></TriggerGroup></TriggerPackage>
   <KeyPackage>
 </KeyPackage>
 </MudletPackage>

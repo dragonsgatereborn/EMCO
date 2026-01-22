@@ -16,6 +16,10 @@ You can use the following command in Mudlet to install the latest version:
 
 Once you have it installed you can update by using the `emco update` alias.
 
+## Important
+
+Do not add or change anything inside the EMCOChat package folders. EMCO updates overwrite package contents and will delete custom changes. Put your custom triggers/aliases/scripts outside EMCOChat or in a separate custom package.
+
 ## Usage
 
 ### Copying lines into your EMCO
