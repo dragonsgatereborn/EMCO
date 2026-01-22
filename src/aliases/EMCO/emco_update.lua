@@ -1,4 +1,4 @@
-local currentVersion = "2.15.14"
+local currentVersion = "2.15.15"
 local repoUrl = "https://github.com/dragonsgatereborn/EMCO"
 local apiUrl = "https://api.github.com/repos/dragonsgatereborn/EMCO/releases/latest"
 local packageUrl = repoUrl .. "/releases/latest/download/@PKGNAME@.mpackage"
@@ -23,7 +23,7 @@ if getHTTP then
       installLatest("")
     end
   end)
-  getHTTP(apiUrl, function(body, code)
+  getHTTP(apiUrl, {}, function(body, code)
     if completed then return end
     completed = true
     if code and tonumber(code) ~= 200 then
