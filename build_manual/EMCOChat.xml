@@ -188,7 +188,8 @@ function demonnic.helpers.resetToDefaults()
     bufferSize = 10000,
     deleteLines = 500,
     timestamp = true,
-    fontSize = 12,
+    fontSize = 14,
+    tabFontSize = 16,
     font = "Ubuntu Mono",
     consoleColor = demonnic.config.background,
     activeTabCSS = activeStyle:getCSS(),
@@ -718,7 +719,7 @@ end
       <Alias isActive="yes" isFolder="no">
           
         <name>emco update</name>
-        <script>local currentVersion = "2.15.13"
+        <script>local currentVersion = "2.15.14"
 local repoUrl = "https://github.com/dragonsgatereborn/EMCO"
 local apiUrl = "https://api.github.com/repos/dragonsgatereborn/EMCO/releases/latest"
 local packageUrl = repoUrl .. "/releases/latest/download/EMCOChat.mpackage"
@@ -820,7 +821,7 @@ demonnic.container:setTitle(title)</script>
         
       </Alias>
       
-    <Alias isActive="yes" isFolder="no"><name>emco version</name><script>local version = "2.15.13"
+    <Alias isActive="yes" isFolder="no"><name>emco version</name><script>local version = "2.15.14"
 local repo = "https://github.com/dragonsgatereborn/EMCO"
 
 cecho("&lt;green&gt;EMCO Chat Package\n")

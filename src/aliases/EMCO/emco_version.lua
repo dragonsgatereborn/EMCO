@@ -1,4 +1,4 @@
-local version = "2.15.13"
+local version = "2.15.14"
 local repo = "https://github.com/dragonsgatereborn/EMCO"
 
 cecho("<green>EMCO Chat Package\n")
