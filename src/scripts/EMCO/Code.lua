@@ -1,3 +1,115 @@
+--[[
+========================================================
+ EMCO CHAT WINDOW — AVAILABLE COMMANDS & FEATURES
+========================================================
+This system controls your tabbed chat window (EMCO).
+All commands begin with:  emco
+
+--------------------------------------------------------
+ TAB MANAGEMENT
+--------------------------------------------------------
+emco addtab <tabname>
+  Adds a new tab to the chat window.
+
+emco remtab <tabname>
+  Removes an existing tab.
+
+--------------------------------------------------------
+ DISPLAY & APPEARANCE
+--------------------------------------------------------
+emco show
+  Shows the EMCO chat window.
+
+emco hide
+  Hides the EMCO chat window.
+
+emco lock
+  Locks the window so it cannot be moved or resized.
+
+emco unlock
+  Unlocks the window so it can be moved/resized again.
+
+emco font <fontname>
+  Sets the font used by the chat consoles.
+
+emco fontSize <size>
+  Sets the font size for the chat consoles.
+
+emco tabFontSize <size>
+  Sets the font size for the tabs (independent of console).
+
+emco color <option> <value>
+  Changes colors for tabs and backgrounds.
+  Use 'emco color' by itself to see available options.
+
+emco title <new title>
+  Sets the title displayed at the top of the chat window.
+  Default title: "Tabbed Chat"
+
+--------------------------------------------------------
+ MESSAGE DISPLAY OPTIONS
+--------------------------------------------------------
+emco timestamp <true|false>
+  Turns timestamps on or off for messages.
+
+emco blankLine <true|false>
+  Inserts (or removes) a blank line between messages.
+
+emco blink <true|false>
+  Turns tab blinking on or off for new activity.
+
+--------------------------------------------------------
+ NOTIFICATIONS
+--------------------------------------------------------
+emco notify <tabname>
+  Enables OS-level notifications for that tab.
+
+emco unnotify <tabname>
+  Disables OS-level notifications for that tab.
+
+--------------------------------------------------------
+ GAGGING / FILTERING
+--------------------------------------------------------
+emco gag <pattern>
+  Adds a gag filter (hides matching text).
+
+emco ungag <pattern>
+  Removes a gag filter.
+
+emco gaglist
+  Shows all currently active gag patterns.
+
+--------------------------------------------------------
+ CONFIGURATION
+--------------------------------------------------------
+emco save
+  Saves your current EMCO configuration to disk.
+
+emco load
+  Loads your saved EMCO configuration.
+
+emco update
+  (Re)installs or updates to the latest EMCO package version.
+
+--------------------------------------------------------
+ USAGE IN CODE
+--------------------------------------------------------
+To copy lines from triggers to a tab:
+  demonnic.chat:append("TabName")
+
+To send custom messages:
+  demonnic.chat:cecho("TabName", "Your message here\n")
+  demonnic.chat:decho("TabName", "Your message here\n")
+  demonnic.chat:hecho("TabName", "Your message here\n")
+
+Full API documentation:
+  https://demonnic.github.io/mdk/current/classes/EMCO.html
+
+========================================================
+ End of EMCO Help
+========================================================
+]]--
+
 local defaultConfig = {activeColor = "black", inactiveColor = "black", activeBorder = "green", activeText = "green", inactiveText = "grey", background = "black", windowBorder = "green", title = "green"}
 local emco = require("@PKGNAME@.emco")
 emco.cmdLineStyleSheet = nil
