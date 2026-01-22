@@ -1,4 +1,4 @@
-local currentVersion = "2.15.2"
+local currentVersion = "2.15.3"
 local repoUrl = "https://github.com/dragonsgatereborn/EMCO"
 local packageUrl = repoUrl .. "/releases/latest/download/@PKGNAME@.mpackage"
 

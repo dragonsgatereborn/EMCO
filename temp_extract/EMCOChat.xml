@@ -132,7 +132,7 @@ Full API documentation:
 ]]--
 
 local defaultConfig = {activeColor = "black", inactiveColor = "black", activeBorder = "green", activeText = "green", inactiveText = "grey", background = "black", windowBorder = "green", title = "green"}
-local emco = require("@PKGNAME@.emco")
+local emco = require("EMCOChat.emco")
 emco.cmdLineStyleSheet = nil
 demonnic = demonnic or {}
 demonnic.helpers = demonnic.helpers or {}
@@ -705,7 +705,7 @@ end
       <Alias isActive="yes" isFolder="no">
           
         <name>emco update</name>
-        <script>local currentVersion = "2.15.2"
+        <script>local currentVersion = "2.15.3"
 local repoUrl = "https://github.com/dragonsgatereborn/EMCO"
 local packageUrl = repoUrl .. "/releases/latest/download/EMCOChat.mpackage"
 
@@ -768,7 +768,7 @@ demonnic.container:setTitle(title)</script>
         
       </Alias>
       
-    <Alias isActive="yes" isFolder="no"><name>emco version</name><script>local version = "2.15.2"
+    <Alias isActive="yes" isFolder="no"><name>emco version</name><script>local version = "2.15.3"
 local repo = "https://github.com/dragonsgatereborn/EMCO"
 
 cecho("&lt;green&gt;EMCO Chat Package\n")

@@ -48,7 +48,8 @@ if code_script is None:
     ET.SubElement(code_script, "name").text = "Code"
     ET.SubElement(code_script, "script")
 
-code_script.find("script").text = src_script_path.read_text(encoding="utf-8")
+code_text = src_script_path.read_text(encoding="utf-8")
+code_script.find("script").text = code_text.replace("@PKGNAME@", pkg_name)
 
 if src_readme_script_path.exists():
     if readme_script is None:
