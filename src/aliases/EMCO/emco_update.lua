@@ -1,4 +1,4 @@
-local currentVersion = "2.15.12"
+local currentVersion = "2.15.13"
 local repoUrl = "https://github.com/dragonsgatereborn/EMCO"
 local apiUrl = "https://api.github.com/repos/dragonsgatereborn/EMCO/releases/latest"
 local packageUrl = repoUrl .. "/releases/latest/download/@PKGNAME@.mpackage"
@@ -19,19 +19,22 @@ if getHTTP then
   tempTimer(8, function()
     if not completed then
       completed = true
-      cecho("<green>EMCO Chat: <reset>Latest version: unknown (timed out). No update performed.\n")
+      cecho("<green>EMCO Chat: <reset>Latest version: unknown (timed out). Installing latest.\n")
+      installLatest("")
     end
   end)
   getHTTP(apiUrl, function(body, code)
     if completed then return end
     completed = true
     if code and tonumber(code) ~= 200 then
-      cecho("<green>EMCO Chat: <reset>Latest version: unknown (HTTP " .. tostring(code) .. "). No update performed.\n")
+      cecho("<green>EMCO Chat: <reset>Latest version: unknown (HTTP " .. tostring(code) .. "). Installing latest.\n")
+      installLatest("")
       return
     end
     local tag = body and body:match('"tag_name"%s*:%s*"([^"]+)"') or ""
     if tag == "" then
-      cecho("<green>EMCO Chat: <reset>Latest version: unknown (invalid response). No update performed.\n")
+      cecho("<green>EMCO Chat: <reset>Latest version: unknown (invalid response). Installing latest.\n")
+      installLatest("")
       return
     end
     cecho("<green>EMCO Chat: <reset>Latest version: " .. tag .. "\n")
@@ -44,5 +47,6 @@ if getHTTP then
     installLatest(tag)
   end)
 else
-  cecho("<green>EMCO Chat: <reset>Latest version: unknown (getHTTP unavailable). No update performed.\n")
+  cecho("<green>EMCO Chat: <reset>Latest version: unknown (getHTTP unavailable). Installing latest.\n")
+  installLatest("")
 end
