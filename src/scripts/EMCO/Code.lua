@@ -162,7 +162,7 @@ function demonnic.helpers.resetToDefaults()
     y = 0,
     height = "100%",
     width = "100%",
-    consoles = {"All", "Local", "City", "OOC", "Tells", "Group"},
+    consoles = {"All", "Program", "OOC", "RP", "Whisper", "Group", "Game"},
     allTab = true,
     allTabName = "All",
     blankLine = true,

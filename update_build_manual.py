@@ -9,6 +9,8 @@ src_alias_dir = base_dir / "src" / "aliases" / "EMCO"
 src_script_path = base_dir / "src" / "scripts" / "EMCO" / "Code.lua"
 src_readme_script_path = base_dir / "src" / "scripts" / "EMCO" / "README.lua"
 src_trigger_readme_path = base_dir / "src" / "triggers" / "EMCO" / "README.lua"
+src_trigger_dir = base_dir / "src" / "triggers" / "EMCO"
+src_triggers_json_path = src_trigger_dir / "triggers.json"
 
 pkg_name = "EMCOChat"
 
@@ -104,6 +106,44 @@ if src_trigger_readme_path.exists():
         ET.SubElement(trigger_readme, "regexCodeList")
         ET.SubElement(trigger_readme, "regexCodePropertyList")
     trigger_readme.find("script").text = src_trigger_readme_path.read_text(encoding="utf-8")
+
+# Add example triggers from triggers.json
+if src_triggers_json_path.exists():
+    triggers_json = json.loads(src_triggers_json_path.read_text(encoding="utf-8"))
+    existing_triggers = {}
+    for trig in trigger_group.findall("Trigger"):
+        name_elem = trig.find("name")
+        if name_elem is not None:
+            existing_triggers[name_elem.text] = trig
+
+    for trig_def in triggers_json:
+        name = trig_def["name"]
+        regex = trig_def["regex"]
+        script_path = src_trigger_dir / f"{name}.lua"
+        if not script_path.exists():
+            raise SystemExit(f"Missing trigger source file: {script_path}")
+        script_content = script_path.read_text(encoding="utf-8")
+
+        trigger_elem = existing_triggers.get(name)
+        if trigger_elem is None:
+            trigger_elem = ET.SubElement(trigger_group, "Trigger", isActive="yes", isFolder="no")
+            ET.SubElement(trigger_elem, "name")
+            ET.SubElement(trigger_elem, "script")
+            ET.SubElement(trigger_elem, "command")
+            ET.SubElement(trigger_elem, "packageName")
+            ET.SubElement(trigger_elem, "regexCodeList")
+            ET.SubElement(trigger_elem, "regexCodePropertyList")
+
+        trigger_elem.find("name").text = name
+        trigger_elem.find("script").text = script_content
+        regex_list = trigger_elem.find("regexCodeList")
+        regex_prop_list = trigger_elem.find("regexCodePropertyList")
+        regex_list.clear()
+        regex_prop_list.clear()
+        regex_node = ET.SubElement(regex_list, "string")
+        regex_node.text = regex
+        regex_prop = ET.SubElement(regex_prop_list, "integer")
+        regex_prop.text = "1"
 
 # Build mapping of existing aliases by name
 existing = {}

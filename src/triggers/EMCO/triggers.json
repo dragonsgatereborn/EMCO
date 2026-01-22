@@ -1,0 +1,9 @@
+[
+  {"name": "ALL", "regex": "^\\[ALL\\]"},
+  {"name": "PROGRAM", "regex": "^\\[PROGRAM\\]"},
+  {"name": "OOC", "regex": "^\\[OOC\\]"},
+  {"name": "RP", "regex": "^\\[RP\\]"},
+  {"name": "WHISPER", "regex": "^\\[WHISPER\\]"},
+  {"name": "GROUP", "regex": "^\\[GROUP\\]"},
+  {"name": "GAME", "regex": "^\\[GAME\\]"}
+]

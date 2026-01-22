@@ -177,7 +177,7 @@ function demonnic.helpers.resetToDefaults()
     y = 0,
     height = "100%",
     width = "100%",
-    consoles = {"All", "Local", "City", "OOC", "Tells", "Group"},
+    consoles = {"All", "Program", "OOC", "RP", "Whisper", "Group", "Game"},
     allTab = true,
     allTabName = "All",
     blankLine = true,
@@ -710,7 +710,7 @@ end
       <Alias isActive="yes" isFolder="no">
           
         <name>emco update</name>
-        <script>local currentVersion = "2.15.4"
+        <script>local currentVersion = "2.15.5"
 local repoUrl = "https://github.com/dragonsgatereborn/EMCO"
 local packageUrl = repoUrl .. "/releases/latest/download/EMCOChat.mpackage"
 
@@ -773,7 +773,7 @@ demonnic.container:setTitle(title)</script>
         
       </Alias>
       
-    <Alias isActive="yes" isFolder="no"><name>emco version</name><script>local version = "2.15.4"
+    <Alias isActive="yes" isFolder="no"><name>emco version</name><script>local version = "2.15.5"
 local repo = "https://github.com/dragonsgatereborn/EMCO"
 
 cecho("&lt;green&gt;EMCO Chat Package\n")
@@ -839,7 +839,49 @@ Important
 Repository
 - https://github.com/dragonsgatereborn/EMCO
 --]]
-</script><command /><packageName /><regexCodeList /><regexCodePropertyList /></Trigger></TriggerGroup></TriggerPackage>
+</script><command /><packageName /><regexCodeList /><regexCodePropertyList /></Trigger><Trigger isActive="yes" isFolder="no"><name>ALL</name><script>--[[
+Example trigger for ALL messages
+Pattern: ^\[ALL\]
+--]]
+
+demonnic.chat:append("All")
+</script><command /><packageName /><regexCodeList><string>^\[ALL\]</string></regexCodeList><regexCodePropertyList><integer>1</integer></regexCodePropertyList></Trigger><Trigger isActive="yes" isFolder="no"><name>PROGRAM</name><script>--[[
+Example trigger for PROGRAM messages
+Pattern: ^\[PROGRAM\]
+--]]
+
+demonnic.chat:append("Program")
+</script><command /><packageName /><regexCodeList><string>^\[PROGRAM\]</string></regexCodeList><regexCodePropertyList><integer>1</integer></regexCodePropertyList></Trigger><Trigger isActive="yes" isFolder="no"><name>OOC</name><script>--[[
+Example trigger for OOC messages
+Pattern: ^\[OOC\]
+--]]
+
+demonnic.chat:append("OOC")
+</script><command /><packageName /><regexCodeList><string>^\[OOC\]</string></regexCodeList><regexCodePropertyList><integer>1</integer></regexCodePropertyList></Trigger><Trigger isActive="yes" isFolder="no"><name>RP</name><script>--[[
+Example trigger for RP messages
+Pattern: ^\[RP\]
+--]]
+
+demonnic.chat:append("RP")
+</script><command /><packageName /><regexCodeList><string>^\[RP\]</string></regexCodeList><regexCodePropertyList><integer>1</integer></regexCodePropertyList></Trigger><Trigger isActive="yes" isFolder="no"><name>WHISPER</name><script>--[[
+Example trigger for WHISPER messages
+Pattern: ^\[WHISPER\]
+--]]
+
+demonnic.chat:append("Whisper")
+</script><command /><packageName /><regexCodeList><string>^\[WHISPER\]</string></regexCodeList><regexCodePropertyList><integer>1</integer></regexCodePropertyList></Trigger><Trigger isActive="yes" isFolder="no"><name>GROUP</name><script>--[[
+Example trigger for GROUP messages
+Pattern: ^\[GROUP\]
+--]]
+
+demonnic.chat:append("Group")
+</script><command /><packageName /><regexCodeList><string>^\[GROUP\]</string></regexCodeList><regexCodePropertyList><integer>1</integer></regexCodePropertyList></Trigger><Trigger isActive="yes" isFolder="no"><name>GAME</name><script>--[[
+Example trigger for GAME messages
+Pattern: ^\[GAME\]
+--]]
+
+demonnic.chat:append("Game")
+</script><command /><packageName /><regexCodeList><string>^\[GAME\]</string></regexCodeList><regexCodePropertyList><integer>1</integer></regexCodePropertyList></Trigger></TriggerGroup></TriggerPackage>
   <KeyPackage>
 </KeyPackage>
 </MudletPackage>
