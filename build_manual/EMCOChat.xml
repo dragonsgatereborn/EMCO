@@ -1,12 +1,12 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE MudletPackage>
+<?xml version='1.0' encoding='utf-8'?>
 <MudletPackage version="1.001">
   <ScriptPackage>
     <ScriptGroup isActive="yes" isFolder="yes">
         
       <name>EMCO</name>
-      <script/>
+      <script />
         
-      <packageName/>
+      <packageName />
       
       <eventHandlerList>
 </eventHandlerList>
@@ -141,7 +141,7 @@ end
 registerNamedEventHandler("demonnicEMCO", "EMCOprebuilt startup", "sysLoadEvent", startup)
 </script>
           
-        <packageName/>
+        <packageName />
         
         <eventHandlerList>
 </eventHandlerList>
@@ -222,11 +222,11 @@ else
 end
 </script>
         
-      <command/>
+      <command />
         
-      <packageName/>
+      <packageName />
         
-      <regex/>
+      <regex />
       <Alias isActive="yes" isFolder="no">
           
         <name>emco</name>
@@ -297,9 +297,9 @@ else
 end
 </script>
           
-        <command/>
+        <command />
           
-        <packageName/>
+        <packageName />
           
         <regex>^emco (save|load|font|fontSize|blink|blankLine|timestamp|show|hide)(?: (.+))?$</regex>
         
@@ -315,9 +315,9 @@ if success then
 end
 echo(f"Unable to add '{matches[2]}' as a gag pattern, this is usually because it's already added.")</script>
           
-        <command/>
+        <command />
           
-        <packageName/>
+        <packageName />
           
         <regex>^emco gag (.+)</regex>
         
@@ -333,9 +333,9 @@ if success then
 end
 echo(f"Unable to remove '{matches[2]}' as a gag pattern, this is usually because it hasn't been set.")</script>
           
-        <command/>
+        <command />
           
-        <packageName/>
+        <packageName />
           
         <regex>^emco ungag (.+)</regex>
         
@@ -355,9 +355,9 @@ for _,pattern in ipairs(gaggedLines) do
 end
 </script>
           
-        <command/>
+        <command />
           
-        <packageName/>
+        <packageName />
           
         <regex>^emco gaglist$</regex>
         
@@ -377,9 +377,9 @@ else
   echo(f"Tab {tabName} does not exist")
 end</script>
           
-        <command/>
+        <command />
           
-        <packageName/>
+        <packageName />
           
         <regex>^emco notify (.*)</regex>
         
@@ -399,9 +399,9 @@ else
   echo(f"Tab {tabName} does not exist")
 end</script>
           
-        <command/>
+        <command />
           
-        <packageName/>
+        <packageName />
           
         <regex>^emco unnotify (.*)</regex>
         
@@ -420,9 +420,9 @@ if table.contains(chatEMCO.consoles, tabName) then
 end
 chatEMCO:addTab(tabName, pos)</script>
           
-        <command/>
+        <command />
           
-        <packageName/>
+        <packageName />
           
         <regex>^emco addtab (\w+)( \d+)?$</regex>
         
@@ -440,9 +440,9 @@ if not table.contains(tabList, tabName) then
 end
 chatEMCO:removeTab(tabName)</script>
           
-        <command/>
+        <command />
           
-        <packageName/>
+        <packageName />
           
         <regex>^emco remtab (.+)</regex>
         
@@ -459,9 +459,9 @@ if not ok then
 end
 echo(f"Set color for {matches[2]} to {matches[3]}")</script>
           
-        <command/>
+        <command />
           
-        <packageName/>
+        <packageName />
           
         <regex>^emco color (\w+) (.+)</regex>
         
@@ -486,9 +486,9 @@ echo()
 echo("Valid options are " .. validOptionsString)
 echo("Remember to use 'emco save' to make your changes permanent, or 'emco load' to undo them and reset back to what you previously saved.")</script>
           
-        <command/>
+        <command />
           
-        <packageName/>
+        <packageName />
           
         <regex>^emco color$</regex>
         
@@ -525,9 +525,9 @@ for name, desc in spairs(aliases) do
 end
 </script>
           
-        <command/>
+        <command />
           
-        <packageName/>
+        <packageName />
           
         <regex>^emco( usage)?$</regex>
         
@@ -538,9 +538,9 @@ end
         <script>uninstallPackage("EMCOChat")
 installPackage("https://github.com/demonnic/EMCO/releases/latest/download/EMCOChat.mpackage")</script>
           
-        <command/>
+        <command />
           
-        <packageName/>
+        <packageName />
           
         <regex>^emco update$</regex>
         
@@ -554,9 +554,9 @@ if title == "clear" then
 end
 demonnic.container:setTitle(title)</script>
           
-        <command/>
+        <command />
           
-        <packageName/>
+        <packageName />
           
         <regex>^emco title (.+)</regex>
         
@@ -566,9 +566,9 @@ demonnic.container:setTitle(title)</script>
         <name>emco lock</name>
         <script>demonnic.container:lockContainer()</script>
           
-        <command/>
+        <command />
           
-        <packageName/>
+        <packageName />
           
         <regex>^emco lock$</regex>
         
@@ -578,9 +578,9 @@ demonnic.container:setTitle(title)</script>
         <name>emco unlock</name>
         <script>demonnic.container:unlockContainer()</script>
           
-        <command/>
+        <command />
           
-        <packageName/>
+        <packageName />
           
         <regex>^emco unlock$</regex>
         
