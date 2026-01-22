@@ -715,19 +715,35 @@ end
       <Alias isActive="yes" isFolder="no">
           
         <name>emco update</name>
-        <script>local currentVersion = "2.15.6"
+        <script>local currentVersion = "2.15.7"
 local repoUrl = "https://github.com/dragonsgatereborn/EMCO"
+local apiUrl = "https://api.github.com/repos/dragonsgatereborn/EMCO/releases/latest"
 local packageUrl = repoUrl .. "/releases/latest/download/EMCOChat.mpackage"
+
+local function installLatest(latestTag)
+  if latestTag and latestTag ~= "" then
+    cecho("&lt;green&gt;EMCO Chat: &lt;reset&gt;Latest version: " .. latestTag .. "\n")
+  else
+    cecho("&lt;green&gt;EMCO Chat: &lt;reset&gt;Latest version: unknown (installing latest)\n")
+  end
+  uninstallPackage("EMCOChat")
+  installPackage(packageUrl)
+  cecho("&lt;green&gt;EMCO Chat: &lt;reset&gt;Update complete! Package installed from:\n")
+  cecho("&lt;green&gt;EMCO Chat: &lt;reset&gt;" .. packageUrl .. "\n")
+end
 
 cecho("&lt;green&gt;EMCO Chat: &lt;reset&gt;Current version: " .. currentVersion .. "\n")
 cecho("&lt;green&gt;EMCO Chat: &lt;reset&gt;Updating from " .. repoUrl .. "\n")
 cecho("&lt;green&gt;EMCO Chat: &lt;reset&gt;Fetching latest version...\n")
 
-uninstallPackage("EMCOChat")
-installPackage(packageUrl)
-
-cecho("&lt;green&gt;EMCO Chat: &lt;reset&gt;Update complete! Package installed from:\n")
-cecho("&lt;green&gt;EMCO Chat: &lt;reset&gt;" .. packageUrl .. "\n")
+if getHTTP then
+  getHTTP(apiUrl, function(body)
+    local tag = body and body:match('"tag_name"%s*:%s*"([^"]+)"') or ""
+    installLatest(tag)
+  end)
+else
+  installLatest("")
+end
 </script>
           
         <command />
@@ -778,7 +794,7 @@ demonnic.container:setTitle(title)</script>
         
       </Alias>
       
-    <Alias isActive="yes" isFolder="no"><name>emco version</name><script>local version = "2.15.6"
+    <Alias isActive="yes" isFolder="no"><name>emco version</name><script>local version = "2.15.7"
 local repo = "https://github.com/dragonsgatereborn/EMCO"
 
 cecho("&lt;green&gt;EMCO Chat Package\n")

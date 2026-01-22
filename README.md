@@ -79,7 +79,7 @@ If you want to send lines to the EMCO in code yourself, you can use `demonnic.ch
 * `emco unnotify <tabName>`
   * turn off OS notifications for tabName
 * `emco update`
-  * (re)install the latest version of the package from GitHub
+  * (re)install the latest version of the package from GitHub and show the latest version tag
 * `emco restart`
   * restart the EMCO chat window and reload defaults
 * `emco version`
