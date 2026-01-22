@@ -1,4 +1,4 @@
-local currentVersion = "2.15.9"
+local currentVersion = "2.15.10"
 local repoUrl = "https://github.com/dragonsgatereborn/EMCO"
 local apiUrl = "https://api.github.com/repos/dragonsgatereborn/EMCO/releases/latest"
 local packageUrl = repoUrl .. "/releases/latest/download/@PKGNAME@.mpackage"
@@ -6,8 +6,6 @@ local packageUrl = repoUrl .. "/releases/latest/download/@PKGNAME@.mpackage"
 local function installLatest(latestTag)
   if latestTag and latestTag ~= "" then
     cecho("<green>EMCO Chat: <reset>Latest version: " .. latestTag .. "\n")
-  else
-    cecho("<green>EMCO Chat: <reset>Latest version: unknown (installing latest)\n")
   end
   uninstallPackage("@PKGNAME@")
   installPackage(packageUrl)
@@ -23,6 +21,7 @@ if getHTTP then
   local completed = false
   tempTimer(3, function()
     if not completed then
+      completed = true
       cecho("<green>EMCO Chat: <reset>Latest version: unknown (timed out, installing latest)\n")
       installLatest("")
     end
@@ -34,5 +33,6 @@ if getHTTP then
     installLatest(tag)
   end)
 else
+  cecho("<green>EMCO Chat: <reset>Latest version: unknown (installing latest)\n")
   installLatest("")
 end

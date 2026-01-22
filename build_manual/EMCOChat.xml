@@ -718,7 +718,7 @@ end
       <Alias isActive="yes" isFolder="no">
           
         <name>emco update</name>
-        <script>local currentVersion = "2.15.9"
+        <script>local currentVersion = "2.15.10"
 local repoUrl = "https://github.com/dragonsgatereborn/EMCO"
 local apiUrl = "https://api.github.com/repos/dragonsgatereborn/EMCO/releases/latest"
 local packageUrl = repoUrl .. "/releases/latest/download/EMCOChat.mpackage"
@@ -726,8 +726,6 @@ local packageUrl = repoUrl .. "/releases/latest/download/EMCOChat.mpackage"
 local function installLatest(latestTag)
   if latestTag and latestTag ~= "" then
     cecho("&lt;green&gt;EMCO Chat: &lt;reset&gt;Latest version: " .. latestTag .. "\n")
-  else
-    cecho("&lt;green&gt;EMCO Chat: &lt;reset&gt;Latest version: unknown (installing latest)\n")
   end
   uninstallPackage("EMCOChat")
   installPackage(packageUrl)
@@ -743,6 +741,7 @@ if getHTTP then
   local completed = false
   tempTimer(3, function()
     if not completed then
+      completed = true
       cecho("&lt;green&gt;EMCO Chat: &lt;reset&gt;Latest version: unknown (timed out, installing latest)\n")
       installLatest("")
     end
@@ -754,6 +753,7 @@ if getHTTP then
     installLatest(tag)
   end)
 else
+  cecho("&lt;green&gt;EMCO Chat: &lt;reset&gt;Latest version: unknown (installing latest)\n")
   installLatest("")
 end
 </script>
@@ -806,7 +806,7 @@ demonnic.container:setTitle(title)</script>
         
       </Alias>
       
-    <Alias isActive="yes" isFolder="no"><name>emco version</name><script>local version = "2.15.9"
+    <Alias isActive="yes" isFolder="no"><name>emco version</name><script>local version = "2.15.10"
 local repo = "https://github.com/dragonsgatereborn/EMCO"
 
 cecho("&lt;green&gt;EMCO Chat Package\n")
