@@ -48,6 +48,10 @@
     "regex": "^emco update$"
   },
   {
+    "name": "emco version",
+    "regex": "^emco version$"
+  },
+  {
     "name": "emco title",
     "regex": "^emco title (.+)"
   },

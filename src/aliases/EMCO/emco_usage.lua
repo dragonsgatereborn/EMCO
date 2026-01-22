@@ -18,6 +18,8 @@ local aliases = {
   ["emco notify <tabName>"] = "turn on OS notifications for tabName",
   ["emco unnotify <tabName>"] = "turn off OS notifications for tabName",
   ["emco color <option> <value>"] = "used to change the colors for the active/inactive tab, and the background color for the consoles. 'emco color' with no options will print out available options",
+  ["emco version"] = "display the current EMCO version and repository information",
+  ["emco update"] = "(re)install the latest version of the package",
 }
 
 echo("\nAvailable aliases for the prebuilt EMCO package")

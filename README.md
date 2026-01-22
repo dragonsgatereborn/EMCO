@@ -74,3 +74,5 @@ If you want to send lines to the EMCO in code yourself, you can use `demonnic.ch
   * turn off OS notifications for tabName
 * `emco update`
   * (re)install the latest version of the package
+* `emco version`
+  * display the current EMCO version and repository information

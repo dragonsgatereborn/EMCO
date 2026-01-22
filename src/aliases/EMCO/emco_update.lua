@@ -1,2 +1,11 @@
+local repoUrl = "https://github.com/dragonsgatereborn/EMCO"
+local packageUrl = repoUrl .. "/releases/latest/download/@PKGNAME@.mpackage"
+
+cecho("<green>EMCO Chat: <reset>Updating from " .. repoUrl .. "\n")
+cecho("<green>EMCO Chat: <reset>Fetching latest version...\n")
+
 uninstallPackage("@PKGNAME@")
-installPackage("https://github.com/demonnic/EMCO/releases/latest/download/@PKGNAME@.mpackage")
+installPackage(packageUrl)
+
+cecho("<green>EMCO Chat: <reset>Update complete! Package installed from:\n")
+cecho("<green>EMCO Chat: <reset>" .. packageUrl .. "\n")

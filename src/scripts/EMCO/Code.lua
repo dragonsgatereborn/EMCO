@@ -88,6 +88,9 @@ emco save
 emco load
   Loads your saved EMCO configuration.
 
+emco version
+  Displays the current EMCO version and repository information.
+
 emco update
   (Re)installs or updates to the latest EMCO package version.
 
