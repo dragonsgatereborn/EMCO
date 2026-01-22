@@ -1,7 +1,7 @@
 [
   {
     "name": "emco",
-    "regex": "^emco (save|load|font|fontSize|tabFontSize|blink|blankLine|timestamp|show|hide)(?: (.+))?$"
+    "regex": "^emco (save|load|font|fontSize|tabFontSize|addFontSize|blink|blankLine|timestamp|show|hide)(?: (.+))?$"
   },
   {
     "name": "emco gag",

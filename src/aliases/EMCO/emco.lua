@@ -1,4 +1,4 @@
-local valid_options = {"font", "fontSize", "tabFontSize", "blink", "blankLine", "timestamp", "save", "load", "show", "hide"}
+local valid_options = {"font", "fontSize", "tabFontSize", "addFontSize", "blink", "blankLine", "timestamp", "save", "load", "show", "hide"}
 local valid_options_string = table.concat(valid_options, ", ")
 local option = matches[2]
 local value = matches[3]
@@ -54,7 +54,7 @@ else
         chatEMCO:disableCommandLine()
       end
     end
-  elseif option == "tabFontSize" then
+  elseif option == "tabFontSize" or option == "addFontSize" then
     value = tonumber(value)
     if value then
       chatEMCO:setTabFontSize(value)

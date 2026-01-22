@@ -16,7 +16,8 @@ Available aliases
 - emco color <option> <value>
 - emco font <fontname>
 - emco fontSize <size>
-- emco tabFontSize <size> (sometimes referred to as addFontSize)
+- emco tabFontSize <size>
+- emco addFontSize <size> (alias for tabFontSize)
 - emco gag <pattern>
 - emco gaglist
 - emco hide

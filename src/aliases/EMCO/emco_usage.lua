@@ -6,6 +6,7 @@ local aliases = {
   ["emco remtab <tabname>"] = "removes a tab from your EMCO",
   ["emco fontSize"] = "set the font size for the consoles",
   ["emco tabFontSize"] = "set the font size for the tabs",
+  ["emco addFontSize"] = "alias for tabFontSize",
   ["emco font"] = "set the font to use for the consoles",
   ["emco blink <true|false>"] = "turn blinking on/off",
   ["emco blankLine <true|false>"] = "turn inserting a blank line between messages on/off",

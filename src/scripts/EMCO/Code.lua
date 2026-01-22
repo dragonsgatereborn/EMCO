@@ -38,6 +38,9 @@ emco fontSize <size>
 emco tabFontSize <size>
   Sets the font size for the tabs (independent of console).
 
+emco addFontSize <size>
+  Alias for tabFontSize.
+
 emco color <option> <value>
   Changes colors for tabs and backgrounds.
   Use 'emco color' by itself to see available options.

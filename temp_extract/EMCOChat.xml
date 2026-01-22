@@ -53,6 +53,9 @@ emco fontSize &lt;size&gt;
 emco tabFontSize &lt;size&gt;
   Sets the font size for the tabs (independent of console).
 
+emco addFontSize &lt;size&gt;
+  Alias for tabFontSize.
+
 emco color &lt;option&gt; &lt;value&gt;
   Changes colors for tabs and backgrounds.
   Use 'emco color' by itself to see available options.
@@ -281,7 +284,8 @@ Available aliases
 - emco color &lt;option&gt; &lt;value&gt;
 - emco font &lt;fontname&gt;
 - emco fontSize &lt;size&gt;
-- emco tabFontSize &lt;size&gt; (sometimes referred to as addFontSize)
+- emco tabFontSize &lt;size&gt;
+- emco addFontSize &lt;size&gt; (alias for tabFontSize)
 - emco gag &lt;pattern&gt;
 - emco gaglist
 - emco hide
@@ -384,7 +388,7 @@ end
       <Alias isActive="yes" isFolder="no">
           
         <name>emco</name>
-        <script>local valid_options = {"font", "fontSize", "tabFontSize", "blink", "blankLine", "timestamp", "save", "load", "show", "hide"}
+        <script>local valid_options = {"font", "fontSize", "tabFontSize", "addFontSize", "blink", "blankLine", "timestamp", "save", "load", "show", "hide"}
 local valid_options_string = table.concat(valid_options, ", ")
 local option = matches[2]
 local value = matches[3]
@@ -440,7 +444,7 @@ else
         chatEMCO:disableCommandLine()
       end
     end
-  elseif option == "tabFontSize" then
+  elseif option == "tabFontSize" or option == "addFontSize" then
     value = tonumber(value)
     if value then
       chatEMCO:setTabFontSize(value)
@@ -463,7 +467,7 @@ end
           
         <packageName />
           
-        <regex>^emco (save|load|font|fontSize|tabFontSize|blink|blankLine|timestamp|show|hide)(?: (.+))?$</regex>
+        <regex>^emco (save|load|font|fontSize|tabFontSize|addFontSize|blink|blankLine|timestamp|show|hide)(?: (.+))?$</regex>
         
       </Alias>
       <Alias isActive="yes" isFolder="no">
@@ -666,6 +670,7 @@ local aliases = {
   ["emco remtab &lt;tabname&gt;"] = "removes a tab from your EMCO",
   ["emco fontSize"] = "set the font size for the consoles",
   ["emco tabFontSize"] = "set the font size for the tabs",
+  ["emco addFontSize"] = "alias for tabFontSize",
   ["emco font"] = "set the font to use for the consoles",
   ["emco blink &lt;true|false&gt;"] = "turn blinking on/off",
   ["emco blankLine &lt;true|false&gt;"] = "turn inserting a blank line between messages on/off",
@@ -700,7 +705,7 @@ end
       <Alias isActive="yes" isFolder="no">
           
         <name>emco update</name>
-        <script>local currentVersion = "2.15.1"
+        <script>local currentVersion = "2.15.2"
 local repoUrl = "https://github.com/dragonsgatereborn/EMCO"
 local packageUrl = repoUrl .. "/releases/latest/download/EMCOChat.mpackage"
 
@@ -763,7 +768,7 @@ demonnic.container:setTitle(title)</script>
         
       </Alias>
       
-    <Alias isActive="yes" isFolder="no"><name>emco version</name><script>local version = "2.15.1"
+    <Alias isActive="yes" isFolder="no"><name>emco version</name><script>local version = "2.15.2"
 local repo = "https://github.com/dragonsgatereborn/EMCO"
 
 cecho("&lt;green&gt;EMCO Chat Package\n")

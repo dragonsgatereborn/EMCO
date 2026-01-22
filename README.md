@@ -44,6 +44,8 @@ If you want to send lines to the EMCO in code yourself, you can use `demonnic.ch
   * set the font size for the consoles
 * `emco tabFontSize`
   * set the font size for the tabs (sometimes referred to as addFontSize)
+* `emco addFontSize`
+  * alias for tabFontSize
 * `emco gag <pattern>`
   * add a gag pattern
 * `emco gaglist`
