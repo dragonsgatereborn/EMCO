@@ -272,6 +272,9 @@ registerNamedEventHandler("demonnicEMCO", "EMCOprebuilt startup", "sysLoadEvent"
     <Script isActive="yes" isFolder="no"><name>README</name><script>--[[
 EMCO Chat Package README
 
+Author: Demonnic
+Contributor: WizzyDizzy
+
 Important
 - Do not add or change anything inside the EMCOChat package folders.
 - EMCO updates overwrite package contents and will delete custom changes.
@@ -715,7 +718,7 @@ end
       <Alias isActive="yes" isFolder="no">
           
         <name>emco update</name>
-        <script>local currentVersion = "2.15.7"
+        <script>local currentVersion = "2.15.8"
 local repoUrl = "https://github.com/dragonsgatereborn/EMCO"
 local apiUrl = "https://api.github.com/repos/dragonsgatereborn/EMCO/releases/latest"
 local packageUrl = repoUrl .. "/releases/latest/download/EMCOChat.mpackage"
@@ -794,7 +797,7 @@ demonnic.container:setTitle(title)</script>
         
       </Alias>
       
-    <Alias isActive="yes" isFolder="no"><name>emco version</name><script>local version = "2.15.7"
+    <Alias isActive="yes" isFolder="no"><name>emco version</name><script>local version = "2.15.8"
 local repo = "https://github.com/dragonsgatereborn/EMCO"
 
 cecho("&lt;green&gt;EMCO Chat Package\n")
@@ -804,6 +807,9 @@ cecho("&lt;green&gt;GitHub: &lt;cyan&gt;" .. repo .. "\n")
 cecho("&lt;white&gt;Use &lt;green&gt;emco update&lt;white&gt; to check for updates.\n")
 </script><command /><packageName /><regex>^emco version$</regex></Alias><Alias isActive="yes" isFolder="no"><name>README</name><script>--[[
 EMCO Chat Package README
+
+Author: Demonnic
+Contributor: WizzyDizzy
 
 Important
 - Do not add or change anything inside the EMCOChat package folders.
@@ -872,6 +878,9 @@ echo("Restarted EMCO chat window.")
   <TriggerPackage>
 <TriggerGroup isActive="yes" isFolder="yes"><name>EMCO</name><script /><packageName /><Trigger isActive="yes" isFolder="no"><name>README</name><script>--[[
 EMCO Chat Package README (Triggers)
+
+Author: Demonnic
+Contributor: WizzyDizzy
 
 Important
 - Do not add or change anything inside the EMCOChat package folders.
