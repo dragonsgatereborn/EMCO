@@ -1,4 +1,4 @@
-local valid_options = {"font", "fontSize", "blink", "blankLine", "timestamp", "save", "load", "show", "hide"}
+local valid_options = {"font", "fontSize", "tabFontSize", "blink", "blankLine", "timestamp", "save", "load", "show", "hide"}
 local valid_options_string = table.concat(valid_options, ", ")
 local option = matches[2]
 local value = matches[3]
@@ -53,6 +53,14 @@ else
       elseif option == "commandLine" then
         chatEMCO:disableCommandLine()
       end
+    end
+  elseif option == "tabFontSize" then
+    value = tonumber(value)
+    if value then
+      chatEMCO:setTabFontSize(value)
+      lecho("Tab font size set to " .. value)
+    else
+      lecho("You tried to set the tabFontSize to a nonnumber. Attempted: " .. matches[3])
     end
   else
     value = tonumber(value)
