@@ -48,6 +48,10 @@
     "regex": "^emco update$"
   },
   {
+    "name": "emco restart",
+    "regex": "^emco restart$"
+  },
+  {
     "name": "emco version",
     "regex": "^emco version$"
   },

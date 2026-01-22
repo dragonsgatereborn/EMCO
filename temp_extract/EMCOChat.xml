@@ -112,8 +112,11 @@ emco version
 emco update
   (Re)installs or updates to the latest EMCO package version.
 
+emco restart
+  Restarts the EMCO chat window and reloads defaults.
+
 --------------------------------------------------------
- USAGE IN CODE
+USAGE IN CODE
 --------------------------------------------------------
 To copy lines from triggers to a tab:
   demonnic.chat:append("TabName")
@@ -306,6 +309,7 @@ Available aliases
 - emco ungag &lt;pattern&gt;
 - emco unnotify &lt;tabName&gt;
 - emco update
+- emco restart
 - emco version
 
 Repository
@@ -690,6 +694,7 @@ local aliases = {
   ["emco color &lt;option&gt; &lt;value&gt;"] = "used to change the colors for the active/inactive tab, and the background color for the consoles. 'emco color' with no options will print out available options",
   ["emco version"] = "display the current EMCO version and repository information",
   ["emco update"] = "(re)install the latest version of the package",
+  ["emco restart"] = "restart the EMCO chat window and reload defaults",
 }
 
 echo("\nAvailable aliases for the prebuilt EMCO package")
@@ -710,7 +715,7 @@ end
       <Alias isActive="yes" isFolder="no">
           
         <name>emco update</name>
-        <script>local currentVersion = "2.15.5"
+        <script>local currentVersion = "2.15.6"
 local repoUrl = "https://github.com/dragonsgatereborn/EMCO"
 local packageUrl = repoUrl .. "/releases/latest/download/EMCOChat.mpackage"
 
@@ -773,7 +778,7 @@ demonnic.container:setTitle(title)</script>
         
       </Alias>
       
-    <Alias isActive="yes" isFolder="no"><name>emco version</name><script>local version = "2.15.5"
+    <Alias isActive="yes" isFolder="no"><name>emco version</name><script>local version = "2.15.6"
 local repo = "https://github.com/dragonsgatereborn/EMCO"
 
 cecho("&lt;green&gt;EMCO Chat Package\n")
@@ -817,12 +822,33 @@ Aliases
 - emco ungag &lt;pattern&gt;
 - emco unnotify &lt;tabName&gt;
 - emco update
+- emco restart
 - emco version
 
 Repository
 - https://github.com/dragonsgatereborn/EMCO
 --]]
-</script><command /><packageName /><regex>^__EMCO_README__$</regex></Alias></AliasGroup>
+</script><command /><packageName /><regex>^__EMCO_README__$</regex></Alias><Alias isActive="yes" isFolder="no"><name>emco restart</name><script>local echo = demonnic.helpers.echo
+
+if demonnic.container then
+  if demonnic.container.hide then
+    demonnic.container:hide()
+  end
+  if demonnic.container.close then
+    demonnic.container:close()
+  end
+  if demonnic.container.destroy then
+    demonnic.container:destroy()
+  end
+end
+
+demonnic.container = nil
+demonnic.chat = nil
+collectgarbage("collect")
+
+demonnic.helpers.resetToDefaults()
+echo("Restarted EMCO chat window.")
+</script><command /><packageName /><regex>^emco restart$</regex></Alias></AliasGroup>
     
   </AliasPackage>
   <TimerPackage>

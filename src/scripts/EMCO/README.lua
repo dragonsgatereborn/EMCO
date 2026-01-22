@@ -38,6 +38,7 @@ Available aliases
 - emco ungag <pattern>
 - emco unnotify <tabName>
 - emco update
+- emco restart
 - emco version
 
 Repository

@@ -97,8 +97,11 @@ emco version
 emco update
   (Re)installs or updates to the latest EMCO package version.
 
+emco restart
+  Restarts the EMCO chat window and reloads defaults.
+
 --------------------------------------------------------
- USAGE IN CODE
+USAGE IN CODE
 --------------------------------------------------------
 To copy lines from triggers to a tab:
   demonnic.chat:append("TabName")
